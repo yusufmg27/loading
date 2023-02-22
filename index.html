@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border-top: 16px solid red;
+  border-right: 16px solid green;
+  border-bottom: 16px solid blue;
+  border-left: 16px solid magenta;
+  border-radius: 50%;
+  -webkit-animation: spin 0.5s linear infinite;
+  animation: spin 0.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 2s;
+  animation-name: animatebottom;
+  animation-duration: 2s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+#loads{
+   position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: 96px 0 0 -55px;
+}
+
+#loadz{
+   position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: 96px 0 0 -40px;
+}
+
+#persen{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -40px 0 0 -30px;
+}
+
+.percentB{
+    position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -40px 0 0 -22px;
+}
+</style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
+
+<div id="persen"><h1 class="percentNumb" id="count" style="font-family:arial">0</h1><h1 class="percentB" style="font-family:arial">%</h1></div>
+
+<div id="loads" class="animate-bottom">
+  <h2 style="font-family:arial">Loading...</h2>
+</div>
+<div id="loadz" style="display:none;" class="animate-bottom">
+  <h2 style="font-family:arial">Sabar...</h2>
+</div>
+
+<div style="display:none;" id="myDiv" class="animate-bottom">
+  <h1 style="font-family:arial">Tada!</h1>
+  <h3 style="font-family:arial">Gaada Apa-apa disini...</h3>
+</div>
+
+<script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 5000);
+   myVar = setTimeout(kSabar, 2500);
+}
+
+function kSabar(){
+document.getElementById("loads").style.display = "none";
+document.getElementById("loadz").style.display = "block";
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("loadz").style.display = "none";
+  document.getElementById("persen").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+
+var cnt=document.getElementById("count"); 
+var percent=cnt.innerText;
+var interval;
+interval=setInterval(function(){ 
+  percent++; 
+  cnt.innerHTML = percent; 
+  water.style.transform='translate(0'+','+(100-percent)+'%)';
+  if(percent==100){
+    clearInterval(interval);
+  }
+},50);
+</script>
+
+</body>
+</html>
